@@ -1,15 +1,19 @@
 # deps
 node_modules/
 .pnpm-store/
+.pnp
+.pnp.*
 
 # next
 .next/
 out/
+build/
 next-env.d.ts
 
-# env
+# env (.env.example is committed)
 .env
 .env*.local
+*.pem
 
 # supabase
 supabase/.branches/
@@ -25,3 +29,6 @@ public/sw.js.map
 # os / editor
 .DS_Store
 *.log
+
+# claude code (launch.json is shared)
+.claude/settings.local.json
