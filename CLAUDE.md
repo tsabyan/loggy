@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # Loggy — agent rules
 
 Loggy is a single-user, chat-first project manager. Chat is the only input; a kanban board, timeline and stats are the output. The AI turns messages into JSON actions; the server validates and applies them.
@@ -11,7 +13,7 @@ Loggy is a single-user, chat-first project manager. Chat is the only input; a ka
 ## Workflow for a task
 
 1. Restate the task's **Done when** lines and list the files you will touch. Ask if anything is unclear.
-2. For third-party APIs (Next.js, `@supabase/ssr`, `@google/genai`, Serwist, dnd-kit, Recharts, Zod), check current docs (context7) before writing code. Do not rely on memory for these.
+2. For third-party APIs (Next.js, `@supabase/ssr`, `@google/genai`, Serwist, dnd-kit, Recharts, Zod), check current docs before writing code: Next.js docs ship in `node_modules/next/dist/docs/` (see AGENTS.md); use context7 for the rest. Do not rely on memory for these.
 3. Implement. Write tests alongside (unit for TS, SQL tests in `supabase/tests/` for DB functions and RLS).
 4. Run `pnpm check` (and `supabase test db` if SQL changed). Fix until green.
 5. Tick the task in `docs/TASKS.md`. Add a one-line note under it if anything differed from the plan. If you changed a design decision, update `docs/ARCHITECTURE.md` in the same change.
@@ -23,7 +25,8 @@ Do not start the next task unless asked.
 
 ```bash
 pnpm dev            # Next.js dev server
-pnpm check          # lint + typecheck + test (must pass before a task is done)
+pnpm check          # lint + format check + typecheck + test (must pass before a task is done)
+pnpm format         # Prettier write (run before committing)
 pnpm test           # Vitest
 pnpm eval           # AI eval set against the real provider (Phase 2 gate)
 pnpm db:types       # regenerate src/lib/db/types.ts from local Supabase
